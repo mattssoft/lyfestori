@@ -1,0 +1,91 @@
+version: '3'
+
+x-postgres-vars: &postgres-vars 
+  POSTGRES_USER: ttss-pguser
+  POSTGRES_PASSWORD: ttss-pgpw
+  POSTGRES_DB: ttss-pgdb
+
+services:
+
+  postgres:
+    image: postgres:latest
+    container_name: ttss-postgres
+    environment:
+      <<: *postgres-vars
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis
+    container_name: ttss-redis
+    # use when backend is running in container
+    expose:
+      - 6379
+    # used when backend is running locally
+    ports:
+      - "6379:6379"
+
+  rest-api:
+    container_name: ttss-rest-api
+    build: 
+      context: ./rest-api
+      dockerfile: rest-api.Dockerfile
+    links:
+      - redis
+    volumes:
+      - type: bind
+        source: ./common
+        target: /code/common
+      - type: bind
+        source: ./rest-api/src
+        target: /code/src
+
+    command: npm run dev
+    ports:
+      - "8181:8181"
+    expose:
+      - 8181      
+
+  keystone:
+    container_name: ttss-keystone
+    build: 
+      context: ./keystone
+      dockerfile: keystone.Dockerfile
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    expose:
+      - 3000
+    environment:
+      <<: *postgres-vars   
+      PORT: 3000
+    volumes:
+      - type: bind
+        source: ./common
+        target: /code/common   
+      - type: bind
+        source: ./keystone/configs
+        target: /code/configs        
+    links:
+      - redis
+      - postgres
+
+  react-admin:
+    container_name: ttss-react-admin
+    build: 
+      context: ./react-admin
+      dockerfile: react-admin.Dockerfile
+    volumes:
+      - type: bind
+        source: ./react-admin/src
+        target: /code/src
+    command: npm run dev
+    ports:
+      - "5173:5173"
+    expose:
+      - 5173
+
+volumes:
+  pg-data:

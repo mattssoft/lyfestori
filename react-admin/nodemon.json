@@ -1,0 +1,7 @@
+{
+    "watch": ["src", "common"],
+    "ext": "js,json,ts, tsx",
+    "exec": "npm run dev",
+    "restartable": "rs",
+    "exitcrash": true
+  }
