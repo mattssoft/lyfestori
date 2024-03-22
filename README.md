@@ -19,11 +19,11 @@ Some of the instructions might assume Debian 12. macOS should also work out of t
 `cd common && npm install`
 
 ### nginx configs
-Change <NAME> and <VM-IP> appropriately.
-Change the config filenames to something that is easier to remember, eg. project.domain.com, api.project.domain.com and gapi.project.domain.com
-Copy confs to /etc/nginx/sites-available
-Run `certbot --nginx` to obtain ssl certificates for the domains
-Restart nginx: `systemctl restart nginx`
+- Change <NAME> and <VM-IP> appropriately.
+- Change the config filenames to something that is easier to remember, eg. project.domain.com, api.project.domain.com and gapi.project.domain.com
+- Copy confs to /etc/nginx/sites-available
+- Run `certbot --nginx` to obtain ssl certificates for the domains
+- Restart nginx: `systemctl restart nginx`
 
 
 ## runnin
