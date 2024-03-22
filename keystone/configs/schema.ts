@@ -69,14 +69,6 @@ export const lists: Lists = {
         }
       }),
 
-      organization: relationship({
-        ref: "Organization",
-        many: false,
-        ui: {
-          labelField: "id"
-        }
-      }),
-
       invitationToken: text(),
       passwordResetToken: text(),
       name: text(),
