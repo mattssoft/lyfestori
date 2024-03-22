@@ -13,7 +13,6 @@
     "@apollo/client": "^3.8.7",
     "@emotion/react": "^11.11.1",
     "@kolben/ra-language-swedish": "^3.14.4",
-    "@mattssoft/ra-form-layout": "^4.11.0",
     "@table-library/react-table-library": "^4.1.7",
     "apollo-upload-client": "^18.0.1",
     "dotenv": "^16.4.1",
