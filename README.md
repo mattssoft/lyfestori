@@ -1,5 +1,5 @@
-# ve-customer-app
-SSTTack monorepo boilerplate for projects large and small. Backend is a keystone6 instance. A react-admin frontend with k6 compatible dataprovider is included for a nicer UI experience than k6 offers, if needed.
+# Lyfestori
+Monorepo for lyfestori backend
 
 ## author
 Olle Mattsson / Mattssoft
